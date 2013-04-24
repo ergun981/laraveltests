@@ -6,7 +6,7 @@ class Cardea_Cms_Menus_Controller extends AdminBase_Controller {
 		
 		$data = array(
 			);
-		return view('cardea::admin.cms.menus.all', $data);
+		return view('cardea::cms.menus.all', $data);
 	}
 
 	public function post_new() {

@@ -26,14 +26,14 @@ class Cardea_Cms_Pages_Controller extends AdminBase_Controller {
 	public function get_index() {
 		$data = array();
 		return "yok öyle bişey";
-		return view('admin.cms.pages.list', $data);
+		return view('cms.pages.list', $data);
 	}
 
 	public function get_new() {
 		
 
 		$data = array();
-		return view('cardea::admin.cms.pages.new', $data);
+		return view('cardea::cms.pages.new', $data);
 	}
 
 	public function post_new() {
@@ -116,7 +116,7 @@ class Cardea_Cms_Pages_Controller extends AdminBase_Controller {
 				'page' => $page
 				);
 
-		return view('admin.cms.pages.edit', $data);		
+		return view('cms.pages.edit', $data);		
 		}
 		return Redirect::back();
 	}

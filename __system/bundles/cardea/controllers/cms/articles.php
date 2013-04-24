@@ -10,7 +10,7 @@ class Cardea_Cms_Articles_Controller extends AdminBase_Controller {
 		$data = array(
 			'articles' => $articles
 			);
-		return view('cardea::admin.cms.articles.list', $data);
+		return view('cardea::cms.articles.list', $data);
 	}
 
 	public function get_new($page_id = null)
@@ -29,7 +29,7 @@ class Cardea_Cms_Articles_Controller extends AdminBase_Controller {
         Asset::container('footer')->add('js-plupload-full', 'assets/admin/js/lib/plupload/js/plupload.full.js');
         Asset::container('footer')->add('js-fileplupload', 'assets/admin/js/form/bootstrap-fileupload.min.js', 'jQuery');
         $data = array('page_id'=>$page_id);
-        return View::make('admin.cms.articles.new', $data);
+        return View::make('cms.articles.new', $data);
     }
 
     public function post_new()
@@ -125,7 +125,7 @@ public function get_edit($id = null)
     Asset::container('footer')->add('js-plupload-full', 'assets/admin/js/lib/plupload/js/plupload.full.js');
     Asset::container('footer')->add('js-fileplupload', 'assets/admin/js/form/bootstrap-fileupload.min.js', 'jQuery');
     $data = array('article' => $article,'langcontents' => $langcontents);
-    return View::make('admin.cms.articles.edit', $data);
+    return View::make('cms.articles.edit', $data);
 }
 
 public function post_edit()

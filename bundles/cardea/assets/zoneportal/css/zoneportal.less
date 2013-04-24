@@ -1,0 +1,339 @@
+@import "../less/reset.less";
+@import "../less/epigra/mixins.less";
+@import "../less/epigra/epigra.less";
+
+// Core variables and mixins
+@import "../less/variables.less"; // Modify this for custom colors, font-sizes, etc
+@import "../less/mixins.less";
+
+// Grid system and page structure
+@import "../less/scaffolding.less";
+@import "../less/grid.less";
+@import "../less/layouts.less";
+
+
+// Base CSS
+@import "../less/type.less";
+@import "../less/code.less";
+@import "../less/forms.less";
+@import "../less/tables.less";
+
+// Components: common
+@import "../less/sprites.less";
+@import "../less/dropdowns.less";
+@import "../less/wells.less";
+@import "../less/component-animations.less";
+@import "../less/close.less";
+
+// Components: Buttons & Alerts
+@import "../less/buttons.less";
+@import "../less/button-groups.less";
+@import "../less/alerts.less";
+
+// Components: Nav
+@import "../less/navs.less";
+
+@import "../less/breadcrumbs.less";
+@import "../less/pagination.less";
+@import "../less/pager.less";
+
+// Components: Popovers
+@import "../less/modals.less";
+@import "../less/tooltip.less";
+@import "../less/popovers.less";
+
+// Components: Misc
+@import "../less/thumbnails.less";
+@import "../less/media.less";
+@import "../less/labels-badges.less";
+@import "../less/accordion.less";
+
+// Utility classes
+@import "../less/utilities.less"; // Has to be last to override when necessary
+
+// Base CSS
+@import "../less/jasny-forms.less";
+@import "../less/forms-uneditable.less";
+@import "../less/action-areas.less";
+@import "../less/rowlink.less";
+
+// Components: Buttons & Alerts
+@import "../less/action-links.less";
+@import "../less/iconic.less";
+@import "../less/page-alert.less";
+@import "../less/fileupload.less";
+
+// Components: Nav
+@import "../less/jasny-navs-tabbable.less";
+
+@kurumsalMavi: #003882;
+@kurumsalKirmizi: #9b1116;
+
+
+.container{padding:0 10px}
+#sitelogo{background: url(@sitelogo) top left no-repeat; width: 287px; height: 94px; display: block; text-indent: -9999px}
+
+section.welcome .container{padding-top:15px; background: url(@welcomeBg) top right no-repeat #fff; position: relative }
+section.welcome #sitelogo{margin-bottom: 50px}
+section.welcome .sub{margin-left:50px; width: 450px; position: relative; color:#777; line-height: 20px}
+section.welcome .sub.giris .wbutton{top:60px;}
+section.welcome .sub.yeniuye{height: 150px; margin-top: 20px}
+section.welcome .sub.yeniuye p{width: 300px}
+section.welcome .wbutton{position:absolute; right: 0; top:0; padding-left:70px; background: url(@welcomeButton) left center no-repeat; height: 90px; line-height: 90px; border:none; display: block; font-weight: bold; color:@dominantColor; font-size:13px}
+section.welcome h2{font-size:13px; color:@dominantColor; font-weight: bold}
+section.welcome input[type="text"],section.welcome input[type="password"]{border:none; outline:none; .box-shadow(inset 0 -1px 2px  rgba(0,0,0,.3)); height: 24px; line-height: 24px }
+section.welcome input[type="text"]:focus,section.welcome input[type="password"]:focus{border:none; .box-shadow(inset 0 -1px 2px  @inputFocus);}
+section.welcome label.checkbox{float:left; margin-right: 10px}
+section.welcome .uyari{position: absolute; bottom:15px; right: 15px; z-index: 5}
+
+header.site .container{padding-top:15px; height:155px; background-color:#fff}
+	header.site .search{margin-top: 30px; margin-right: 10px}
+
+
+/*
+
+---- DASHBOARD ----
+
+ */
+
+#dashboard{background: url(@dashPattern) top left;  font-size:11px;}
+#dashboard a{color:#fff;}
+#dashboard a:hover{color:#fff;}
+#dashboard .container{background:url(../img/seperator.png) center no-repeat; padding:0 20px; height: 180px  }
+
+#dashboard .banner{text-align: center; height: 50px}
+#dashboard .banner img{ position: relative; top: -45px}
+
+
+#dashboard #kullanici-panel{}
+#dashboard #kullanici-panel a.logout{background-color: @kurumsalMavi; color:#fff; display: block; width: 80px; margin:0px auto; text-indent: -5px}
+#dashboard #kullanici-panel a.logout:hover{background-color: darken(@kurumsalMavi,10%); }
+#dashboard #kullanici-panel a span{color: @dashLinkHover; }
+#dashboard #kullanici-panel .row-fluid{padding:1.75em 0 0 0; overflow: hidden;}
+	#dashboard #kullanici-panel .users{padding-top: 20px; background: url(@userPanelAyrac) left -60px no-repeat; min-height: 60px  }
+		#dashboard #kullanici-panel .name{font-size:13px; color:#fff; font-weight: bold; position: absolute; margin-top:-20px}
+		#dashboard #kullanici-panel a.ico{background-image: url(@userPanelIcons); background-repeat: no-repeat; display: block; height: 14px; line-height: 14px; padding-left: 19px; margin-bottom: 10px}
+		#dashboard #kullanici-panel a.ico:hover{color:@dashLinkHover;}
+
+		#dashboard #kullanici-panel a.ico.mesaj{background-position: 0 0; margin-top:10px;}
+		#dashboard #kullanici-panel a.ico.puan{background-position: 0 -14px}
+
+#dashboard #current-panel{}
+	#dashboard #current-panel p{ font-size:12px; font-weight: bold; margin-bottom: 3px; }
+	
+	#gerisayac{background: url(@sayacBg) top center no-repeat; width: 282px; height: 44px; margin: 0px auto; font-size:26px; color: #fff; padding-top: 18px; text-align: center;}
+	#gerisayac span{font-size:14px;}
+
+	#nedusunuyor{margin-bottom: 0; position: relative; top:-10px}
+	#nedusunuyor textarea{width:325px; margin:0 0 0 50px; border:none; .box-shadow(0 3px 5px #666); resize: none; height: 40px; padding:5px; font-size:10px; color: #555}
+	#nedusunuyor button{ background: url(../img/gobutton.png) center no-repeat; width: 50px; height: 50px; padding:0; text-indent: -9999px; border:none; .box-shadow(0 3px 5px #666); vertical-align: top; }
+
+#dashboard #duyuru-panel{}
+	#dashboard #duyuru-panel ul{list-style: none; margin:0 }
+	#dashboard #duyuru-panel ul li{background:url(../img/duyuru-panel-icon.png) left center no-repeat @duyurulinkBg; color:#fff; padding:3px 0px 3px 10px; margin-bottom: 3px;}
+
+
+
+
+
+/* Site Content */
+section.site.content{}
+/*
+section.site.content a{ color:@kurumsalKirmizi;}
+section.site.content a:hover{ color:darken(@kurumsalKirmizi, 30%);}
+*/
+
+section.site.content section header{height: 102px}
+section.site.content .stitle{color: @kurumsalMavi; margin-bottom: 8px}
+section.site.content .stitle span{font-weight: normal}
+section.site.content .stitle .ekstra{font-size: 18px; position: relative; top: -1px; left:-6px; vertical-align: middle; color:#999; font-weight: normal}
+section.site.content .stitle a.ekstra:hover{color:darken(@kurumsalMavi,10%);}
+section.site.content .sdesc{color: #fff; font-size:12px; line-height: 44px; margin: 0px; font-weight: normal}
+section.site.content h3.sdesc{font-size:15px; line-height: 41px}
+section.site.content .sdesc a{color: #fff; display: block; height: 44px; line-height: 44px}
+section.site.content .sdesc nav{margin-left: 0px}
+section.site.content .sdesc nav ul{}
+section.site.content .sdesc nav ul li{padding: 0 }
+section.site.content .sdesc nav ul li a{padding: 0 25px; }
+section.site.content .sdesc nav ul li a:hover{background-color:#7f0a0d}
+section.site.content .sdesc nav ul li.active a,section.site.content .sdesc nav ul li a.active{height:42px; border-bottom:2px solid #fff; background-color:#7f0a0d}
+
+
+section.site.content section header.redline{background:url(../img/section_headerbg.jpg) bottom left repeat-x; position: relative;}
+section.site.content section header.redline.mb{margin-bottom: 2em}
+section.site.content section header h2{padding: 10px 0 0 18px;}
+section.site.content section header .sdesc{padding: 0px 0 0 18px; }
+section.site.content section header .btn-toolbar{position: absolute; right: 0;  margin-top:25px}
+
+table.section{margin-top: 63px; position: relative}
+table.section td{vertical-align: middle}
+table.section .simage{position: absolute; top: -58px; left:0}
+table.section .stitle{position: absolute; top:-58px; left: 118px}
+table.section .sdesc{position: absolute; top:0px; left:120px}
+table.section thead .btn-toolbar{position: absolute; right: 0;  top: -58px; }
+
+table.zone thead{background-color: #9f2327; color:#fff}
+table.zone thead th{border:none;  height:28px; line-height: 28px;}
+table.zone thead th:not(:first-child){border-right: 1px solid #fff;}
+
+section.site.content table.zone td a{color:#000; font-weight: bold;}
+section.site.content table.zone td a:hover{color:@kurumsalKirmizi;}
+
+/* TODO: Arkaplan rengi açılacak (pngler için değişiklik gerekiyor) */
+section.site.content .container{padding-top:15px; padding-bottom:15px; background:url(../img/contentshadow.png) top center no-repeat #fff;}
+
+
+aside nav ul{margin-bottom: 1em;}
+aside nav ul li{float:none; padding: 0;}
+
+aside.sol{overflow: hidden;}
+	aside.sol nav ul li a{font-size:11px; display: block; height:30px; line-height:30px; background: url(../img/navigasyon-std.jpg) left top repeat-x; color:@kurumsalMavi !important; .text-shadow(); border-top: 1px solid #fff}
+	aside.sol nav ul li a .zoneicon{width:30px; height:30px; float:left; margin-right:5px; display: block;}
+	aside.sol nav ul li a:hover,aside nav ul li a.active{display: block; background: url(../img/navigasyon-hover.jpg) left top repeat-x; color:#fff !important;}
+	aside.sol nav ul li.kirmizi a{ background: url(../img/kirmizi-button-bg.jpg) left center repeat-x; color:#eee !important; padding-left: 10px}
+	aside.sol nav ul li.kirmizi a{ color:#fff}
+
+
+
+/*
+
+------- HOME  --------
+
+ */
+
+#newsfeed{color:@grayDark}
+#newsfeed .activity{margin-bottom: 10px; padding: 9px 3px}
+#newsfeed .activity .actions{margin-top: 5px; font-weight: bold; line-height: 15px}
+#newsfeed .activity .actions i{vertical-align: bottom; margin-right: 3px;}
+#newsfeed .activity p.sentence{margin-bottom: 3px}
+#newsfeed .activity p.sentence a{color:@kurumsalKirmizi;}
+#newsfeed .activity p.sentence a:hover{text-decoration: underline}
+#newsfeed .activity p.title{color:#000; font-weight: bold; margin-bottom: px}
+#newsfeed .activity a{color: @kurumsalMavi;}
+#newsfeed .activity a:hover{color: darken(@kurumsalMavi, 20%);}
+
+#newsfeed .pagination{text-align: center; background-color: #e7e7e7; padding:7px 0}
+
+aside.sag{}
+	aside .box{border-top:1px solid #fff; .gradient(#eaeaea,#dbdbdb); padding: 10px 5px; margin-bottom: 10px; }
+	.sticky{position: relative;}
+	.sticky .holder{width: 90px; height: 120px; background: url(../img/sticky-holder.png) center no-repeat; float:left; margin-right: 10px}
+	.sticky .holder img{position: relative; top:8px; left: 8px}
+	.sticky .content{padding-top: 15px; font-size:11px}
+	.sticky .content h6{margin-bottom: 5px;}
+	.sticky .content .action{position: absolute;bottom: 0; left: 100px; font-weight: bold;}
+
+	#announcements .announcement{font-size:11px; overflow: hidden; clear: both; padding: 5px 10px 15px 0}
+	#announcements .announcement a{color:@kurumsalKirmizi; text-decoration: underline;}
+	#announcements .announcement a:hover{color:#f00;}
+
+	#announcements .announcement .holder{width: 65px; height: 35px; padding:15px 0; background: url(../img/announcement-holder.png) center no-repeat; float:left; margin-right: 10px; text-align: center;}
+	#announcements .announcement p{margin-bottom: 4px;}
+	#announcements .announcement p.type{font-size:12px}
+	#announcements .announcement p.more,#announcements .announcement p.type{margin-bottom: 0;}
+
+
+/*
+
+------- FORUM -------
+ 
+ */
+section#forum tbody{}
+section#forum tbody td a.altforum{margin-top:7px; display: block}
+
+
+/*
+
+------- OLGULAR -------
+ 
+ */
+section#olgular{}
+section#olgular .olgulist{margin-top: -10px}
+section#olgular .olgulist .olgu{}
+section#olgular .olgulist .olgu .main{ background: url(../img/olgu_bg.jpg) bottom center no-repeat #fbfefe;  padding:10px }
+section#olgular .olgulist .olgu .user-details{margin-top:10px; overflow: hidden}
+section#olgular .olgulist .olgu .user-details a{font-weight: bold; height: 30px; line-height: 30px; font-size:11px}
+section#olgular .olgulist .olgu .media-heading{color:@kurumsalMavi}
+section#olgular .olgulist .olgu .definition{min-height: 165px}
+section#olgular .olgulist .olgu .definition p{font-size:14px; line-height: 20px}
+
+section#olgular .olgulist .olgu .cevaplar{padding:10px 0 }
+section#olgular .olgulist .olgu .cevap{padding: 10px}
+section#olgular .olgulist .olgu .cevap.even{background-color:#eee}
+
+section#olgular .olgulist .olgu .cevap .sutun{width:140px; margin-right: 10px}
+section#olgular .olgulist .olgu .cevap .user-details{margin-top:5px}
+
+section#olgular .olgulist .olgu .cevap .user-details a.u{ text-align: right; display: block; clear:right; height: 23px}
+
+section#olgular .olgulist .olgu .cevap .content{overflow: hidden}
+section#olgular .olgulist .olgu .cevap .content p{line-height: 18px}
+
+section#olgular .olgulist .olgu .yorumlar{overflow: hidden;}
+section#olgular .olgulist .olgu .yorum{padding-bottom:4px; border-bottom:1px solid #eee; margin-bottom:5px; font-size: 11px; margin-left:150px}
+section#olgular .olgulist .olgu .cevap.even .yorum{border-bottom:1px solid #ccc;}
+
+section#olgular .olgulist .olgu .yorum dt{width: 120px; text-align: left;}
+section#olgular .olgulist .olgu .yorum dd{margin-left: 120px}
+
+// NOTE: Genel 
+.btn-toolbar.useractions{overflow: hidden}
+.btn-toolbar.useractions button{margin-left: 8px} 
+
+
+
+
+/*
+
+--------- MUHABİR HABER ---------
+
+ */
+
+#muhabirhaber table.section .avatar{position: relative; margin-left:-50px; margin-right: 5px}
+
+
+/* FOOTER */
+
+footer.site{font-size:11px; position: relative; top: -20px}
+footer.site .container{background:url(../../zoneportal/img/wood-shelf.png) top center no-repeat; width: 1115px; padding-top: 90px;  }
+
+/* menü */
+.zoneicon{background-image: url(../img/menu_sprite.png); background-repeat: no-repeat;}
+.zoneicon.back{background-position: 0 0;}
+.active .zoneicon.back{background-position: -30px 0;}
+
+.zoneicon.mikrofon{background-position: 0 -30px;}
+.active .zoneicon.mikrofon,a:hover .zoneicon.mikrofon{background-position: -30px -30px;}
+
+.zoneicon.identity{background-position: 0 -60px;}
+.active .zoneicon.identity,a:hover .zoneicon.identity{background-position: -30px -60px;}
+
+.zoneicon.pen{background-position: 0 -90px;}
+.active .zoneicon.pen,a:hover .zoneicon.pen{background-position: -30px -90px;}
+
+.zoneicon.eyedropper{background-position: 0 -120px;}
+.active .zoneicon.eyedropper,a:hover .zoneicon.eyedropper{background-position: -30px -120px;}
+
+.zoneicon.newpost{background-position: 0 -150px;}
+.active .zoneicon.newpost,a:hover .zoneicon.newpost{background-position: -30px -150px;}
+
+.zoneicon.library{background-position: 0 -180px;}
+.active .zoneicon.library,a:hover .zoneicon.library{background-position: -30px -180px;}
+
+.zoneicon.ebook{background-position: 0 -210px;}
+.active .zoneicon.ebook,a:hover .zoneicon.ebook{background-position: -30px -210px;}
+
+.zoneicon.movie{background-position: 0 -240px;}
+.active .zoneicon.movie,a:hover .zoneicon.movie{background-position: -30px -240px;}
+
+.zoneicon.slide{background-position: 0 -270px;}
+.active .zoneicon.slide,a:hover .zoneicon.slide{background-position: -30px -270px;}
+
+.zoneicon.calendar{background-position: 0 -300px;}
+.active .zoneicon.calendar,a:hover .zoneicon.calendar{background-position: -30px -300px;}
+
+.zoneicon.conversation{background-position: 0 -330px;}
+.active .zoneicon.conversation,a:hover .zoneicon.conversation{background-position: -30px -330px;}
+
+.zoneicon.clipboard{background-position: 0 -360px;}
+.active .zoneicon.clipboard,a:hover .zoneicon.clipboard{background-position: -30px -360px;}

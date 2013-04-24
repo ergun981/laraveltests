@@ -15,9 +15,8 @@ Route::get('/', function()
 Route::controller(Controller::detect());
 
 Route::get('(:bundle)', array('uses' => 'cardea::login@index'));
-Route::get('(:bundle)/admin', 	array('uses' => 'cardea::login@index'));
-Route::get('(:bundle)/admin/dashboard', 	array('uses' => 'cardea::static@dashboard'));
-Route::get('(:bundle)/admin/faq', 	array('uses' => 'cardea::static@faq'));
+Route::get('(:bundle)/dashboard', 	array('uses' => 'cardea::static@dashboard'));
+Route::get('(:bundle)/faq', 	array('uses' => 'cardea::static@faq'));
 
 /*
 |--------------------------------------------------------------------------
