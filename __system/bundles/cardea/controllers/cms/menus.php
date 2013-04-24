@@ -1,6 +1,6 @@
 <?php
 
-class Cardea_Cms_Menus_Controller extends AdminBase_Controller {
+class Cardea_Cms_Menus_Controller extends Cardea_AdminBase_Controller {
 
 	public function get_index() {
 		
@@ -26,7 +26,7 @@ class Cardea_Cms_Menus_Controller extends AdminBase_Controller {
 
         	Session::flash('status_success', 'Added menu #' . $menu->id);
 
-        	return Redirect::to('admin/cms/menus');
+        	return Redirect::back();
         } else {
         	return Redirect::back()
         	->with_errors($errors)

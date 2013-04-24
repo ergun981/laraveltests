@@ -1,5 +1,5 @@
 <?php
-class AdminBase_Controller extends Controller {
+class Cardea_AdminBase_Controller extends Controller {
 
 	public $restful = true;
 	public $menus;

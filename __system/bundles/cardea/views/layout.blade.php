@@ -111,7 +111,7 @@
 													<li><a href="setting">Diller</a></li>
 												</ul>
 											</li>
-											<li><a href="{{ URL::to('admin/faq') }} "><i class="icon icon-question-sign icon-white"></i> Sık Sorulan Sorular</a></li>
+											<li><a href="{{action('cardea::faq') }} "><i class="icon icon-question-sign icon-white"></i> Sık Sorulan Sorular</a></li>
 
 
 										</ul>
@@ -125,7 +125,7 @@
 							<div class="container">
 								<div class="row">
 									<div class="span3">
-										<div class="main-logo"><a href="{{ URL::to('admin/dashboard') }}">{{ HTML::image('assets/admin/img/epigra_yatay.png', 'Epigra'); }}</a></div>
+										<div class="main-logo"><a href="{{ action('cardea::dashboard') }}">{{ HTML::image('assets/admin/img/epigra_yatay.png', 'Epigra'); }}</a></div>
 									</div>
 									<div class="span5">
 										<nav class="nav-icons">
@@ -144,11 +144,11 @@
 											<div class="user-box-inner">
 												{{ HTML::image('assets/admin/img/avatars/avatar.png', 'Avatar',array('class' => 'user-avatar img-avatar')); }}
 												<div class="user-info">
-													{{ __('admin.merhaba',array('name' => 'Emrullah Yazlı')) }}
+													{{ __('cardea::cardea.merhaba',array('name' => 'Emrullah Yazlı')) }}
 													<ul class="unstyled">
-														<li>{{ HTML::link('admin/profile', __('admin.settings') ); }}</li>
+														<li>{{ HTML::link('admin/profile', __('cardea::cardea.settings') ); }}</li>
 														<li>&middot;</li>
-														<li>{{ HTML::link('admin/logout', __('admin.logout') ); }} </li>
+														<li>{{ HTML::link('admin/logout', __('cardea::cardea.logout') ); }} </li>
 													</ul>
 												</div>
 											</div>
@@ -162,8 +162,8 @@
 						<div class="container">
 							<ul id="breadcrumbs">
 								@section('breadcrumbs')
-								<li><a title="{{ __('admin.homepage') }}" href="{{ URL::base() }} "><i class="icon-home"></i></a></li>
-								<li>{{ HTML::link('admin', __('admin.adminpanel') ); }}</li>
+								<li><a title="{{ __('cardea::cardea.homepage') }}" href="{{ URL::base() }} "><i class="icon-home"></i></a></li>
+								<li>{{ HTML::link('admin', __('cardea::cardea.adminpanel') ); }}</li>
 								@yield_section
 							</ul>
 						</div>

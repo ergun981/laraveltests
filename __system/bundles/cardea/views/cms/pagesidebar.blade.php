@@ -18,7 +18,7 @@
 						<ul class="nav nav-list">
 							@forelse($menu->pages as $mypage)
 								<?php $page = $mypage->page_langs[0];   ?>
-								<li class="nav-header"><a href="{{URL::to('admin/cms/pages/edit/'.$mypage->id)}}">{{ $page->title }}</a></li>
+								<li class="nav-header"><a href="{{action('cardea::cms.pages.edit', array($mypage->id))}}">{{ $page->title }}</a></li>
 							@empty
 								<li class="nav-header">Sayfa Bulunmuyor</li>
 							@endforelse

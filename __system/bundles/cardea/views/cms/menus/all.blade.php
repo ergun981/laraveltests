@@ -17,8 +17,8 @@ $('.modal-body').html(data);
 $('#betaModal').on('shown', function () {
 	$('#confirmedDelete').click(function(){
 		var curId = $(this).data('id');
-		$.get('{{action('cardea::cms/menus/delete/')}}'+$(this).data('id'), function(data){
-			if(data == '1'){	
+		$.get('{{action('cardea::cms/menus/delete').'/'}}'+$(this).data('id'), function(data){
+			if(data == 1){	
 				$.sticky('Menü silindi!', {'type'			: 'st-success'});
 				$('#menuform .close[data-id='+curId+']').parent().delay(400).slideUp().remove();
 			}
@@ -42,7 +42,7 @@ $('#betaModal').on('shown', function () {
 			<i class="icsw16-speech-bubble icsw16-white pull-right"></i>
 		</div>
 		<div class="w-box-content">
-			{{Form::open('cardea::cms/menus/update', NULL, array('class' => 'form-horizontal', 'id' => 'menuform'))}}
+			{{Form::open(action('cardea::cms.menus@update'), 'POST', array('class' => 'form-horizontal', 'id' => 'menuform'))}}
 				@forelse($menus as $menu)
 				<div class="well">
 					<a class="close" href="#betaModal" data-toggle="modal" data-id="{{$menu->id}}">x</a>
@@ -90,7 +90,7 @@ $('#betaModal').on('shown', function () {
 			<h4>Menü Ekle</h4>
 		</div>
 		<div class="w-box-content">
-			{{Form::open(action('cardea::cms.menus@new'))}}
+			{{Form::open(action('cardea::cms.menus@new'), 'POST')}}
 			<div class="formSep">
 				<label class="req control-label" for="title">Menü Başlığı</label>
 				<input type="text" name="title" id="title" value="{{Input::old('title')}}">

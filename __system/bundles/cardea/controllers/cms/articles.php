@@ -1,6 +1,6 @@
 <?php
 
-class Cardea_Cms_Articles_Controller extends AdminBase_Controller {
+class Cardea_Cms_Articles_Controller extends Cardea_AdminBase_Controller {
 	
 	public function get_index() {
 		$articles = CMS\Article::with(array('page_articles','page_articles.page','page_articles.page.page_langs'=>function($query){
@@ -29,7 +29,7 @@ class Cardea_Cms_Articles_Controller extends AdminBase_Controller {
         Asset::container('footer')->add('js-plupload-full', 'assets/admin/js/lib/plupload/js/plupload.full.js');
         Asset::container('footer')->add('js-fileplupload', 'assets/admin/js/form/bootstrap-fileupload.min.js', 'jQuery');
         $data = array('page_id'=>$page_id);
-        return View::make('cms.articles.new', $data);
+        return View::make('cardea::cms.articles.new', $data);
     }
 
     public function post_new()
@@ -125,7 +125,7 @@ public function get_edit($id = null)
     Asset::container('footer')->add('js-plupload-full', 'assets/admin/js/lib/plupload/js/plupload.full.js');
     Asset::container('footer')->add('js-fileplupload', 'assets/admin/js/form/bootstrap-fileupload.min.js', 'jQuery');
     $data = array('article' => $article,'langcontents' => $langcontents);
-    return View::make('cms.articles.edit', $data);
+    return View::make('cardea::cms.articles.edit', $data);
 }
 
 public function post_edit()
@@ -191,7 +191,7 @@ public function post_edit()
         if(empty($id) or empty($article)) return Redirect::to('admin/cms/articles');
         $article->delete_all();
         Session::flash('status_success', 'Makale başarıyla silindi.');
-        return Redirect::to('admin/cms/articles');
+        return Redirect::to_action('cardea::cms.articles@index');
     }
 
 }

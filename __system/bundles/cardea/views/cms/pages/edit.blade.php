@@ -26,14 +26,14 @@ language: 'tr-TR'
 	@include('cardea::cms.pagesidebar')
 </div>
 <div class="span6">
-	@include('system.alerts')
+	@include('cardea::system.alerts')
 	<div class="w-box w-box-red">
 		<div class="w-box-header">
 			<h4>Sayfa Düzenle : {{$page->name}}</h4>
 			<i class="icsw16-create-write icsw16-white pull-left"></i>
 		</div>
 		<div class="w-box-content">
-			<form class="form-horizontal" method="post" action="{{URL::to('admin/cms/pages/update_langs/'.$page->id)}}">
+			<form class="form-horizontal" method="post" action="{{ action('cardea::cms.pages@update_langs', array($page->id))}}">
 
 				<div class="formSep">
 					<div class="tabbable tabbable-bordered">
@@ -99,7 +99,7 @@ language: 'tr-TR'
 		<div class="w-box-header">
 			<h4>Makaleler</h4>
 			<i class="icsw16-create-write icsw16-white pull-left"></i>
-			<a href="{{URL::to('admin/cms/articles/new/'.$page->id)}}" class="btn btn-small btn-primary pull-right" title="Article Ekle"><i class="icon-plus icon-white"></i>Makale Ekle</a>
+			<a href="{{action('cardea::cms.articles@new', array($page->id))}}" class="btn btn-small btn-primary pull-right" title="Article Ekle"><i class="icon-plus icon-white"></i>Makale Ekle</a>
 		</div>
 		<div class="w-box-content">
 			<div role="grid" class="dataTables_wrapper form-inline" id="dt_gal_wrapper">	
@@ -123,8 +123,8 @@ language: 'tr-TR'
 								<td class=" ">{{$page_article->article->publish_on}}</td>
 								<td class=" ">
 									<div class="btn-group">
-										<a title="Düzenle" class="btn btn-mini" href="{{URL::to('admin/cms/articles/edit/'.$page_article->article->id)}}"><i class="icon-pencil"></i></a>
-										<a title="Sil" class="btn btn-mini" href="{{URL::to('admin/cms/articles/delete/'.$page_article->article->id)}}"><i class="icon-trash"></i></a>
+										<a title="Düzenle" class="btn btn-mini" href="{{ action('cardea::cms.articles@edit', array($page_article->article->id))}}"><i class="icon-pencil"></i></a>
+										<a title="Sil" class="btn btn-mini" href="{{action('cardea::cms.articles@delete', array($page_article->article->id))}}"><i class="icon-trash"></i></a>
 									</div>
 								</td>
 							</tr>
@@ -162,7 +162,7 @@ language: 'tr-TR'
 			<i class="icsw16-create-write icsw16-white pull-left"></i>
 		</div>
 		<div class="w-box-content">
-			<form class="form-horizontal" method="post" action="{{URL::to('admin/cms/pages/update_details/'.$page->id)}}">
+			<form class="form-horizontal" method="post" action="{{action('cardea::cms.pages@update_details', array($page->id))}}">
 
 				<div class="formSep">
 					<label class="req" for="pageonline">Durum</label>

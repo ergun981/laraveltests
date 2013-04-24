@@ -1,4 +1,4 @@
-@layout('layout')
+@layout('cardea::layout')
 @section('title')
 Makale Düzenle
 @endsection
@@ -20,7 +20,7 @@ language: 'tr-TR'
 @endsection
 @section('maincontent')
 <div class="span3">
-	@include('cms.pagesidebar')
+	@include('cardea::cms.pagesidebar')
 </div>
 <div class="span9">
 	<div class="w-box">
@@ -29,7 +29,7 @@ language: 'tr-TR'
 			<i class="icsw16-create-write icsw16-white pull-right"></i>
 		</div>
 		<div class="w-box-content">
-			{{Form::open_for_files('admin/cms/articles/edit', 'POST', array('class'=>'form-horizontal'))}}
+			{{Form::open_for_files(action('cardea::cms.articles@edit'), 'POST', array('class'=>'form-horizontal'))}}
 			<input type="hidden" name="article_id" value="{{$article->id}}">
 			<div class="formSep">
 				<div class="span3">

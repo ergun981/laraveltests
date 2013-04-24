@@ -1,5 +1,5 @@
 <?php
-
+//for test
 Route::get('(:bundle)/sayfa-olustur', array('as'=>'new_page', 'uses'=>'cardea::cms.pages@new'));
 Route::get('(:bundle)/menuler', array('as'=>'menus', 'uses'=>'cardea::cms.menus@index'));
 Route::get('(:bundle)/makaleler', array('as'=>'list_articles', 'uses'=>'cardea::cms.articles@index'));
@@ -10,13 +10,13 @@ Route::get('/test', function(){
 
 Route::get('/', function()
 {
-	return View::make('cardea::admin.common.dashboard');
+	return View::make('cardea::common.dashboard');
 });
-Route::controller(Controller::detect());
+Route::controller(Controller::detect('cardea'));
 
 Route::get('(:bundle)', array('uses' => 'cardea::login@index'));
 Route::get('(:bundle)/dashboard', 	array('uses' => 'cardea::static@dashboard'));
-Route::get('(:bundle)/faq', 	array('uses' => 'cardea::static@faq'));
+Route::get('(:bundle)/faq', 	array('as'=>'faq','uses' => 'cardea::static@faq'));
 
 /*
 |--------------------------------------------------------------------------

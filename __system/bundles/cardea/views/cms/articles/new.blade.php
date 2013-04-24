@@ -1,4 +1,4 @@
-@layout('layout')
+@layout('cardea::layout')
 @section('title')
 Yeni Makale
 @endsection
@@ -52,17 +52,17 @@ $(".articlename").val($('#url'+$(this).data('id')).val());
 @endsection
 @section('maincontent')
 <div class="span3">
-	@include('cms.pagesidebar')
+	@include('cardea::cms.pagesidebar')
 </div>
 <div class="span9">
-	@include('system.alerts')
+	@include('cardea::system.alerts')
 	<div class="w-box">
 		<div class="w-box-header">
 			<h4>Yeni Makale</h4>
 			<i class="icsw16-create-write icsw16-white pull-right"></i>
 		</div>
 		<div class="w-box-content">
-			{{Form::open_for_files('admin/cms/articles/new', 'POST', array('class'=>'form-horizontal'))}}
+			{{Form::open_for_files(action('cardea::cms.articles.new'), 'POST', array('class'=>'form-horizontal'))}}
 			<!-- <form class="form-horizontal" method="post" action="{{URL::to('admin/cms/articles/new')}}"> -->
 			<input type="hidden" name="page_id" value="{{$page_id}}">
 			<input type="hidden" name="name" class="articlename">

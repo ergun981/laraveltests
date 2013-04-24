@@ -32,9 +32,9 @@ Makaleler
 				<tbody>
 					@forelse($articles as $article)
 					<tr>
-						<td><a href="{{ URL::to('admin/cms/articles/edit/'.$article->id) }}">{{ $article->article_langs[0]->title }} </a></td>
+						<td><a href="{{action('cardea::cms.articles@edit', array($article->id)) }}">{{ $article->article_langs[0]->title }} </a></td>
 						<td>
-							<a href="{{ URL::to('admin/cms/pages/edit') }}">{{$article->page_articles[0]->page->page_langs[0]->title}}</a>
+							<a href="{{ action('cardea::cms.pages@edit', array($article->page_articles[0]->page->id)) }}">{{$article->page_articles[0]->page->page_langs[0]->title}}</a>
 						</td>
 						<td>
 						@foreach($article->article_langs as $article_lang)
@@ -43,8 +43,8 @@ Makaleler
 							
 						</td>
 						<td>
-							<a href="{{ URL::to('admin/cms/articles/edit/'.$article->id) }}"><i class="splashy-documents_edit"></i></a>
-							<a href="{{ URL::to('admin/cms/articles/delete/'.$article->id) }}"><i class="splashy-document_letter_remove"></i></a>
+							<a href="{{ action('cardea::cms.articles@edit', array($article->id)) }}"><i class="splashy-documents_edit"></i></a>
+							<a href="{{ action('cardea::cms.articles@delete', array($article->id)) }}"><i class="splashy-document_letter_remove"></i></a>
 						</td>
 					</tr>
 					@empty

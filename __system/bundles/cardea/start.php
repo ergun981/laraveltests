@@ -1,7 +1,7 @@
 <?php
 
 Autoloader::map(array(
-	'AdminBase_Controller' => path('bundle').'cardea/controllers/adminbase.php',
+	'Cardea_AdminBase_Controller' => path('bundle').'cardea/controllers/adminbase.php',
 ));
 Autoloader::directories(array(
 	path('bundle').'cardea'.DS.'models',

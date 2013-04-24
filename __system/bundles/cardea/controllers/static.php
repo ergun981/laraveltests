@@ -1,6 +1,6 @@
 <?php
 
-class Cardea_Static_Controller extends AdminBase_Controller {
+class Cardea_Static_Controller extends Cardea_AdminBase_Controller {
 
 	public function get_dashboard() {
 		Asset::container('header')->add('icsw2_32', 'assets/admin/img/icsw2_32/icsw2_32.css');	

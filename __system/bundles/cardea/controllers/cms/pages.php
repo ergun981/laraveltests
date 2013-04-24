@@ -1,6 +1,6 @@
 <?php
 
-class Cardea_Cms_Pages_Controller extends AdminBase_Controller {
+class Cardea_Cms_Pages_Controller extends Cardea_AdminBase_Controller {
 
 	public function __construct(){
 		parent::__construct();
@@ -95,9 +95,9 @@ class Cardea_Cms_Pages_Controller extends AdminBase_Controller {
 
 			Session::flash('status_success', 'Added page #' . $page->id);
 
-			return Redirect::to('admin/dashboard');
+			return Redirect::to_action('cardea::dashboard');
 		} else {
-			return Redirect::to('admin/cms/pages/new')
+			return Redirect::to_action('cardea::cms.pages@new')
 							->with_errors($errors)
 							->with_input();
 		}
@@ -116,7 +116,7 @@ class Cardea_Cms_Pages_Controller extends AdminBase_Controller {
 				'page' => $page
 				);
 
-		return view('cms.pages.edit', $data);		
+		return view('cardea::cms.pages.edit', $data);		
 		}
 		return Redirect::back();
 	}

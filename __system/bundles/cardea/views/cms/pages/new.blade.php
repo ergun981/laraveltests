@@ -58,7 +58,7 @@ $(".forurl").each(function(i){
 			<i class="icsw16-create-write icsw16-white pull-left"></i>
 		</div>
 		<div class="w-box-content">
-			{{Form::open(action('cardea::admin.cms.pages@new'), 'POST', array('class' => 'form-horizontal'))}}
+			{{Form::open(action('cardea::cms.pages@new'), 'POST', array('class' => 'form-horizontal'))}}
 				<input class="pagename" type="hidden" name="name" value="{{Input::get('menu')}}">
 				<div class="formSep row-fluid nopadding">
 					<div class="span4">
