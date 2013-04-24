@@ -1,8 +1,8 @@
 <?php
 
-Route::get('(:bundle)/sayfa-olustur', array('as'=>'new_page', 'uses'=>'cardea::admin.cms.pages@new'));
-Route::get('(:bundle)/menuler', array('as'=>'menus', 'uses'=>'cardea::admin.cms.menus@index'));
-Route::get('(:bundle)/makaleler', array('as'=>'list_articles', 'uses'=>'cardea::admin.cms.articles@index'));
+Route::get('(:bundle)/sayfa-olustur', array('as'=>'new_page', 'uses'=>'cardea::cms.pages@new'));
+Route::get('(:bundle)/menuler', array('as'=>'menus', 'uses'=>'cardea::cms.menus@index'));
+Route::get('(:bundle)/makaleler', array('as'=>'list_articles', 'uses'=>'cardea::cms.articles@index'));
 
 Route::get('/test', function(){
 	return phpinfo();
@@ -14,9 +14,10 @@ Route::get('/', function()
 });
 Route::controller(Controller::detect());
 
-Route::get('(:bundle)/admin', 	array('uses' => 'cardea::admin.login@index'));
-Route::get('(:bundle)/admin/dashboard', 	array('uses' => 'cardea::admin.static@dashboard'));
-Route::get('(:bundle)/admin/faq', 	array('uses' => 'cardea::admin.static@faq'));
+Route::get('(:bundle)', array('uses' => 'cardea::login@index'));
+Route::get('(:bundle)/admin', 	array('uses' => 'cardea::login@index'));
+Route::get('(:bundle)/admin/dashboard', 	array('uses' => 'cardea::static@dashboard'));
+Route::get('(:bundle)/admin/faq', 	array('uses' => 'cardea::static@faq'));
 
 /*
 |--------------------------------------------------------------------------

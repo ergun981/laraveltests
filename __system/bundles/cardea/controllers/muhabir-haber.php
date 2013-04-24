@@ -1,112 +1,89 @@
 <?php
-class Muhabir_Haber_Controller extends Base_Controller {
+
+class Admin_Muhabir_Haber_Controller extends AdminBase_Controller
+{
 	public $restful = true;
 
 	public function __construct()
 	{
 		parent::__construct();
-		$this->filter('before', 'auth');
 	}
 
-	public function get_index() {
-		$authors = User\Role::find(3)->users()->get();
-		$author_article_count = array();
-		foreach ($authors as $author) {
-			$author_article_count[$author->id] = CMS\Article::where('author_id','=',$author->id)->where_is_approved('1')->count();
-		}
-		$data = array(
-			'authors' => $authors,
-			'author_article_count' => $author_article_count);
-		return View::make('zoneportal.muhabir.index',$data);
+//TODO : muhabir ve haber onay  listelemleri
+	public function get_index()
+	{
+		Asset::container('header')->add('beoro-datatable-css','assets/admin/js/lib/datatables/css/datatables_beoro.css');
+		Asset::container('header')->add('beoro-tabletools-css','assets/admin/js/lib/datatables/extras/TableTools/media/css/TableTools.css');
+
+		Asset::container('footer')->add('beoro-datatable-js1','assets/admin/js/lib/datatables/js/jquery.dataTables.min.js');
+		Asset::container('footer')->add('beoro-datatable-js2','assets/admin/js/lib/datatables/extras/ColReorder/media/js/ColReorder.min.js');
+		Asset::container('footer')->add('beoro-datatable-js3','assets/admin/js/lib/datatables/extras/ColVis/media/js/ColVis.min.js');
+		Asset::container('footer')->add('beoro-datatable-js4','assets/admin/js/lib/datatables/extras/TableTools/media/js/TableTools.min.js');
+		Asset::container('footer')->add('beoro-datatable-js5','assets/admin/js/lib/datatables/extras/TableTools/media/js/ZeroClipboard.js');
+		Asset::container('footer')->add('beoro-datatable-js6','assets/admin/js/lib/datatables/js/jquery.dataTables.bootstrap.min.js');
+		$haberler = CMS\Page_Article::with(array('article', 'article.article_langs','article.article_langs.lang', 'article.author'))->where_page_id(3)->get();
+		$data = array('haberler' => $haberler);
+		return view('admin.muhabir.list', $data);
 	}
 
-	public function get_new() {
-		Asset::container('footer')->add('js-ckeditor','assets/zoneportal/js/lib/ckeditor/ckeditor.js');
-		return view('zoneportal.muhabir.haber');
+	public function get_unapproved_authors()
+	{
+		Asset::container('header')->add('beoro-datatable-css','assets/admin/js/lib/datatables/css/datatables_beoro.css');
+		Asset::container('header')->add('beoro-tabletools-css','assets/admin/js/lib/datatables/extras/TableTools/media/css/TableTools.css');
+
+		Asset::container('footer')->add('beoro-datatable-js1','assets/admin/js/lib/datatables/js/jquery.dataTables.min.js');
+		Asset::container('footer')->add('beoro-datatable-js2','assets/admin/js/lib/datatables/extras/ColReorder/media/js/ColReorder.min.js');
+		Asset::container('footer')->add('beoro-datatable-js3','assets/admin/js/lib/datatables/extras/ColVis/media/js/ColVis.min.js');
+		Asset::container('footer')->add('beoro-datatable-js4','assets/admin/js/lib/datatables/extras/TableTools/media/js/TableTools.min.js');
+		Asset::container('footer')->add('beoro-datatable-js5','assets/admin/js/lib/datatables/extras/TableTools/media/js/ZeroClipboard.js');
+		Asset::container('footer')->add('beoro-datatable-js6','assets/admin/js/lib/datatables/js/jquery.dataTables.bootstrap.min.js');
+		$unapproved_authors = Activity::where('action_id','=','19')->where('points', '<=' ,'0')->get();
+		$data = array('activities' => $unapproved_authors);
+		return view('admin.muhabir.applies', $data);
 	}
 
-	public function post_new() {
-		/**
-        * Get all input
-        * @var array
-        */
-		$form = Input::all();
-        /**
-         * Validate all form data
-         * @var mixed
-         */
-        DB::connection()->pdo->beginTransaction();
-        $errors = CMS\Article::validate($form);
+	public function get_approve_author($act_id)
+	{
+		$activity = Activity::find($act_id);
+		$activity->user->role_id = 3;
+		$activity->user->points +=  Config::get('project.action_points')[$activity->action_id];
+		$activity->user->save();
+		$activity->points = Config::get('project.action_points')[$activity->action_id];
+		$activity->save();
+        Session::flash('status_success', $activity->user->full_name().', muhabir başvurusu onaylandı.');
+        return Redirect::back();
 
-        if (!$errors) {
-        	$article = new CMS\Article;
+	}
 
-        	$article->name = Str::slug($form['title']);
-        	$article->author_id = Auth::user()->id;
-        	$article->save();
+	public function get_approve($id)
+	{
+		$article = CMS\Article::with(array('article_langs', 'page_articles'))->find($id);
+		$article->is_approved = '1';
+		$act_lang = $article->article_langs()->first();
+		$act_lang->is_online = '1';
+		$act_lang->is_approve = '1';
+		$act_lang->save();
+		$page_act = $article->page_articles[0];
+		$page_act->is_online = '1';
+		$page_act->save();
+		$article->save();
+        Session::flash('status_success', $act_lang->title.' başlıklı haber onaylandı.');
+        return Redirect::back();
+	}
 
-        	$haber = new CMS\Article_Lang;
-        	$haber->article_id = $article->id;
-        	$haber->title = $form['title'];
-        	$haber->url = Str::slug($form['title']);
-        	$haber->subtitle = $form['title'];		
-        	$haber->meta_title = $form['title'];
-        	$haber->summary = $form['summary'];
-        	$haber->content = $form['content'];
-        	$haber->lang_id = '1';
-        	$haber->is_online = '0';
-        	$haber->is_approve = '0';
-
-        	$haber->save();
-
-        	$page_article = new CMS\Page_Article;
-
-        	$page_article->article_id = $article->id;
-        	$page_article->page_id = '3';
-        	$page_article->order = DB::table('cms_page_articles')->where('page_id','=','3')->max('order') + 1;
-        	$page_article->is_online = '0';
-        	$page_article->save();
-
-        	DB::connection()->pdo->commit();
-
-        	Session::flash('status_success', 'Haber başarıyla eklendi.Yönetici onayından sonra aktif olacaktır!');
-
-        	return Redirect::to('muhabir-haber');
-        } else {
-        	DB::connection()->pdo->rollback();
-        	return Redirect::back()
-        	->with_errors($errors)
-        	->with_input();
-        }
-
-
-    }
-
-    public function get_author($id)
-    {
-    	$author = User::find($id);
-    	if(empty($author) or !$author->has_role('editor')) return Redirect::to('muhabir-haber');
-
-    	$articles = CMS\Article::with(array('page_articles', 'article_langs'))->where('author_id','=',$id)->order_by('created_at','desc')->get();
-
-    	$article_lang_list = array();
-    	foreach($articles as $article)
-    	{
-    		if(($article->article_langs[0]->is_approve == '1') && ($article->page_articles[0]->page_id == 3))
-    			$article_lang_list[] = $article->article_langs[0];
-    	}
-    	$data = array('author' => $author,
-    		'articles' => $article_lang_list);
-    	return View::make('zoneportal.muhabir.muhabir', $data);
-
-    }
-
-    public function get_apply()
-    {
-    	if(!Auth::user()->has_role('user')) return "Üyelik seviyeniz bu işlem için uygun değil.";
-    	if(Activity::where('user_id','=',Auth::user()->id)->where('action_id','=','19')->count()>0) return "İncelenmeyi bekleyen bir başvurunuz bulunuyor.";
-    	save_log(Auth::user()->id, 'apply-for-author');
-    	return "Başvurunuz Kaydedildi";
-    }
-
+	public function get_unapprove($id)
+	{
+		$article = CMS\Article::with(array('article_langs', 'page_articles'))->find($id);
+		$article->is_approved = '0';
+		$act_lang = $article->article_langs()->first();
+		$act_lang->is_online = '0';
+		$act_lang->is_approve = '0';
+		$act_lang->save();
+		$page_act = $article->page_articles[0];
+		$page_act->is_online = '0';
+		$page_act->save();
+		$article->save();
+        Session::flash('status_success', $act_lang->title.' başlıklı haberin onayı kaldırıldı.');
+        return Redirect::back();
+	}
 }

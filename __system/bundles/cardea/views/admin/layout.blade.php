@@ -125,7 +125,7 @@
 							<div class="container">
 								<div class="row">
 									<div class="span3">
-										<div class="main-logo"><a href="{{ URL::to('admin/dashboard') }}">{{ HTML::image('assets/admin/img/cardea_yatay.png', 'Epigra'); }}</a></div>
+										<div class="main-logo"><a href="{{ URL::to('admin/dashboard') }}">{{ HTML::image('assets/admin/img/epigra_yatay.png', 'Epigra'); }}</a></div>
 									</div>
 									<div class="span5">
 										<nav class="nav-icons">
