@@ -1,0 +1,2 @@
+<p>{{$user->full_name()}}, {{Config::get('project.name')}}'da yeni bir haber paylaştı. İnceleyip onaylamak için <a href="{{url('admin/muhabir-haber')}}">buraya</a> tıklayın. Bağlantı çalışmıyorsa aşağıdaki adresi kopyalaıp tarayıcınızın adres çubuğuna yapıştırabilirsiniz.</p>
+<p><a href="{{url('admin/muhabir-haber')}}">{{url('admin/muhabir-haber')}}</a></p>
