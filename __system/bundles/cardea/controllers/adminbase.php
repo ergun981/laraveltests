@@ -8,7 +8,7 @@ class Cardea_AdminBase_Controller extends Controller {
 	public $c_olgu, $c_muhabir, $c_haber, $c_forum;
 
 	public function __construct(){
-		$this->filter('before', 'adminauth');
+		$this->filter('before', 'auth');
 		//header -> styles
 		Asset::container('header')->add('css-bootstrap.min', 'assets/admin/bootstrap/css/bootstrap.css');
 		Asset::container('header')->add('css-bootstrap-responsive.min', 'assets/admin/bootstrap/css/bootstrap-responsive.min.css', 'css-bootstrap.min');
@@ -60,46 +60,6 @@ class Cardea_AdminBase_Controller extends Controller {
 		View::share('languages', $this->languages);
 
 // ///////////////////////////////////////////////////////
-		if (! Cache::has('c_olgu')){
-			$this->c_olgu
-			  =  QA\Question::where('is_approved','=','0')->count();
-			Cache::put('c_olgu',$this->c_olgu, 1);
-
-		}
-		else{ $this->c_olgu = Cache::get('c_olgu'); }
-
-		View::share('c_olgu', $this->c_olgu);
-
-// ///////////////////////////////////////////////////////		
-		if (! Cache::has('c_forum')){
-			$this->c_forum
-			  =  Forum\Topic::where_is_approved('0')->count();
-			Cache::put('c_forum',$this->c_forum, 1);
-
-		}
-		else{ $this->c_forum = Cache::get('c_forum'); }
-
-		View::share('c_forum', $this->c_forum);
-
-// ///////////////////////////////////////////////////////
-		if (! Cache::has('c_muhabir')){
-			$this->c_muhabir = Activity::where('action_id','=','19')->where('points', '<=' ,'0')->count();
-			Cache::put('c_muhabir',$this->c_muhabir, 1);
-
-		}
-		else{ $this->c_muhabir = Cache::get('c_muhabir'); }
-
-		View::share('c_muhabir', $this->c_muhabir);
-
-// ///////////////////////////////////////////////////////
-		if (! Cache::has('c_haber')){
-			$this->c_haber = CMS\Page_Article::with(array('article' => function($query){$query->where_is_approved('0');}))->where_page_id_and_is_online(3, 0)->count();
-			Cache::put('c_haber',$this->c_haber, 1);
-
-		}
-		else{ $this->c_haber = Cache::get('c_haber'); }
-
-		View::share('c_haber', $this->c_haber);
 		
 		parent::__construct();
 
