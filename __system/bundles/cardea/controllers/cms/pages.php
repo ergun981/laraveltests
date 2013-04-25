@@ -1,6 +1,6 @@
 <?php
 
-class Cardea_Cms_Pages_Controller extends Cardea_AdminBase_Controller {
+class Cardea_Cms_Pages_Controller extends CardeaBase_Controller {
 
 	public function __construct(){
 		parent::__construct();

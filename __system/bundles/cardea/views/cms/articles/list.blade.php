@@ -23,10 +23,10 @@ Makaleler
 			<table class="table table-striped">
 				<thead>
 					<tr>
-						<th>Title</th>
-						<th>Page</th>
-						<th>Content</th>
-						<th>Actions</th>
+						<th>Başlık</th>
+						<th>Sayfa</th>
+						<th>Sahibi</th>
+						<th> </th>
 					</tr>
 				</thead>
 				<tbody>
@@ -38,7 +38,7 @@ Makaleler
 						</td>
 						<td>
 						@foreach($article->article_langs as $article_lang)
-							<i class="flag-{{$article_lang->lang->flag}}"></i>
+							<i class="flag-{{$article_lang->lang->flag}}"></i>{{$article->author_name()}}
 						@endforeach
 							
 						</td>

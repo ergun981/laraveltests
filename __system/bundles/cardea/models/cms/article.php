@@ -51,7 +51,7 @@ class Article extends Eloquent {
         return $this->has_many('CMS\Page_Article');
     }
     public function author(){
-        return $this->belongs_to('User\User', 'author_id');
+        return $this->belongs_to('User', 'author_id');
     }
 
     public function author_name(){

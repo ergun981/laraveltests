@@ -5,7 +5,7 @@ Makale Düzenle
 @section('breadcrumbs')
 @parent
 <li><a href="#">İçerik Yönetim</a></li>
-<li><a href="{{URL::to('admin/cms/articles')}}">Makaleler</a></li>
+<li><a href="{{action('cardea::cms.articles')}}">Makaleler</a></li>
 <li><span>Makale Düzenle</span></li>
 @endsection
 @section('jqueries')

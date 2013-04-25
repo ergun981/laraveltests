@@ -52,14 +52,10 @@
 												</li>
 											</ul>
 										</li>
-										<li><a href="#"><i class="icon icon-user icon-white"></i> Kullanıcılar</a>
-											<ul>
-												<li>
-													<a href="{{url('admin/users')}}">Üye Listesi</a>
-												</li>
-												
-											</ul>
+										@foreach(Config::get('cardea::depencies') as $key => $value)
+										<li><a href="{{action($value.'::')}}"><i class="icon icon-user icon-white"></i> {{Bundle::option($value , 'title')}}</a>
 										</li>
+										@endforeach
 										<li>
 											<a href="#"><i class="icsw16-white icsw16-ruler"></i> {{Config::get('project.name')}}</a>
 											<ul>
@@ -73,8 +69,8 @@
 											<ul>
 												<li><a href="#">Cardea</a>
 													<ul>
-														<li><a href="#">Site Ayarları</a></li>
-														<li><a href="#">Gelişmiş Ayarlar</a></li>
+														<li><a href="{{action('cardea::setting')}}">Site Ayarları</a></li>
+														<li><a href="{{action('cardea::setting@advanced')}}">Gelişmiş Ayarlar</a></li>
 													</ul>
 												</li>
 												<li><a href="setting">Kullanıcılar</a></li>
@@ -117,7 +113,7 @@
 												<ul class="unstyled">
 													<li>{{ HTML::link('admin/profile', __('cardea::cardea.settings') ); }}</li>
 													<li>&middot;</li>
-													<li>{{ HTML::link(action('auth::login@logout'), __('cardea::cardea.logout') ); }} </li>
+													<li>{{ HTML::link(action(Config::get('cardea::depencies.auth').'::login@logout'), __('cardea::cardea.logout') ); }} </li>
 												</ul>
 											</div>
 										</div>

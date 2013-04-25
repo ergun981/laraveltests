@@ -118,7 +118,26 @@ Event::listen('500', function($exception)
 {
 	return Response::error('500');
 });
-
+Event::listen('laravel.started: cardea', function() {
+	$is_exist = array();
+	$return = '<?php '."\n"
+	. '//auto-genarated by cardea...DO NOT EDIT...'."\n"
+	. 'return array('."\n";
+		foreach (Bundle::all() as $bundle => $value)
+		{
+			foreach (Bundle::option('cardea', 'depencies') as $key => $type) {	
+				if (isset($value['type']) and $value['type'] == $type and !isset($is_exist[$type]))
+				{
+					$is_exist[$type] = true;
+                //if(! isset(Config::get("cardea::depencies.$type"))){
+					$return .= '"'.$type.'" => "'.$bundle.'",' ."\n";
+             	//}
+				}
+			}
+		}
+		$return .= ' );'."\n";
+File::put(Bundle::path('cardea').'config/depencies.php', $return);
+});
 /*
 |--------------------------------------------------------------------------
 | Route Filters
@@ -164,8 +183,8 @@ Route::filter('csrf', function()
 
 Route::filter('auth', function()
 {
-    if (Auth::guest()) {
-        Session::put('referer', URL::current());
-        return Redirect::to_action('auth::login');
-    }
+	if (Auth::guest()) {
+		Session::put('referer', URL::current());
+		return Redirect::to_action(Config::get('cardea::depencies.auth').'::login');
+	}
 });

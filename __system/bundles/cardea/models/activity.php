@@ -25,13 +25,13 @@ class Activity extends Eloquent {
      * For user_id
      */
     public function user(){
-        return $this->belongs_to('User\User');
+        return $this->belongs_to('User');
     }
 
     /**
      * For to_user_id
      */
      public function to_user(){
-        return $this->belongs_to('User\User', 'to_user_id');
+        return $this->belongs_to('User', 'to_user_id');
     }
 }

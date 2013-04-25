@@ -1,6 +1,6 @@
 <?php
 
-class Cardea_Cms_Articles_Controller extends Cardea_AdminBase_Controller {
+class Cardea_Cms_Articles_Controller extends CardeaBase_Controller {
 	
 	public function get_index() {
 		$articles = CMS\Article::with(array('page_articles','page_articles.page','page_articles.page.page_langs'=>function($query){

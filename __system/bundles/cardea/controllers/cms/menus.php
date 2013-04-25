@@ -1,6 +1,6 @@
 <?php
 
-class Cardea_Cms_Menus_Controller extends Cardea_AdminBase_Controller {
+class Cardea_Cms_Menus_Controller extends CardeaBase_Controller {
 
 	public function get_index() {
 		
