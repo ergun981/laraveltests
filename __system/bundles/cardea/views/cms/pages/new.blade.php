@@ -45,6 +45,14 @@ $(".forurl").each(function(i){
 		});
 	}      
 });
+	// listen for click
+	$('form').on('submit', function(e) {
+		$.post( $(this).attr('action'), $(this).serialize(), function(response) {
+			alert( response );
+		});
+		// disable default action
+		e.preventDefault();
+	});
 @endsection
 @section('maincontent')
 <div class="span3">

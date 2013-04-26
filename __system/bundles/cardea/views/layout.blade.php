@@ -42,13 +42,13 @@
 										<li><a href="#"><i class="icon icon-list icon-white"></i> İçerik Yönetimi</a>
 											<ul>
 												<li>
-													{{ HTML::link_to_route('menus', 'Menüler'); }}
+													{{ HTML::link(action('cardea::cms.menus'), 'Menüler'); }}
 												</li>
 												<li>
-													{{ HTML::link_to_route('new_page', 'Yeni Sayfa'); }}
+													{{ HTML::link(action('cardea::cms.pages@new'), 'Yeni Sayfa'); }}
 												</li>
 												<li>
-													{{ HTML::link_to_route('list_articles', 'Makalaler'); }}
+													{{ HTML::link(action('cardea::cms.articles'), 'Makalaler'); }}
 												</li>
 											</ul>
 										</li>

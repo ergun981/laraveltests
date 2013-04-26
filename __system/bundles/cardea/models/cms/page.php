@@ -1,12 +1,13 @@
 <?php
+
 namespace CMS;
+
 use Eloquent;
+
 class Page extends Eloquent {
 
     public static $table = 'cms_pages';
     public static $timestamps = true;
-
-
     public static $rules = array(
         'menu_id' => array(
             'integer'),
@@ -15,8 +16,8 @@ class Page extends Eloquent {
             'integer'),
         'name' => array(
             'required',
-            'max:30'
-            ,'unique:cms_pages,name'),
+            'max:30',
+            'unique:cms_pages,name'),
         'author_id' => array(
             'integer'),
         'updater_id' => array(
@@ -27,17 +28,30 @@ class Page extends Eloquent {
             'integer'),
         'publish_on' => array(),
         'publish_off' => array(),
-        'link' => array('max:100','alpha_dash'),
+        'link' => array('max:100', 'alpha_dash'),
         'link_type' => array(),
         'link_id' => array(),
     );
 
-    
-    public function menu() { return $this->belongs_to('CMS\Menu'); }
-    public function page_langs() { return $this->has_many('CMS\Page_Lang'); }
-    public function childs() { return $this->has_many('CMS\Page', 'parent_id'); }
-    public function parent() { return $this->belongs_to('CMS\Page'); }
-    public function page_articles() { return $this->has_many('CMS\Page_Article'); }
+    public function menu() {
+        return $this->belongs_to('CMS\Menu');
+    }
+
+    public function page_langs() {
+        return $this->has_many('CMS\Page_Lang');
+    }
+
+    public function childs() {
+        return $this->has_many('CMS\Page', 'parent_id');
+    }
+
+    public function parent() {
+        return $this->belongs_to('CMS\Page');
+    }
+
+    public function page_articles() {
+        return $this->has_many('CMS\Page_Article');
+    }
 
     public static function validate($form) {
         $validation = \Laravel\Validator::make($form, static::$rules);
