@@ -1,11 +1,11 @@
-@layout('admin.layout')
+@layout('cardea::layout')
 @section('title')
 {{$user->first_name}} {{$user->last_name}}
 @endsection
 @section('breadcrumbs')
 @parent
-<li><a href="{{url('admin/users')}}">Kullanıcılar</a></li>
-<li><a href="{{url('admin/users/detail/'.$user->id)}}">{{$user->first_name}} {{$user->last_name}}</a></li>
+<li><a href="{{action('auth::users')}}">Kullanıcılar</a></li>
+<li><a href="{{action('auth::users@detail', array($user->id))}}">{{$user->first_name}} {{$user->last_name}}</a></li>
 @endsection
 @section('jqueries')
 
@@ -72,7 +72,7 @@
 					<div class="control-group">
 						<label class="control-label">Ünvan</label>
 						<div class="controls">
-							{{Form::select('title',Config::get('project.user_titles'),$user->title)}}
+							{{Form::select('title',array('asd','bsd'),$user->title)}}
 						</div>
 					</div>
 

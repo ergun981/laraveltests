@@ -65,6 +65,7 @@ Route::filter('init', function() {
         });
 
 Route::get('/test', function() {
+           dd(Bundle::option('cms' , 'navs'));
             return phpinfo();
         });
 
@@ -75,6 +76,8 @@ Route::get('/', function() {
         });
 Route::controller(Controller::detect('cardea'));
 Route::controller(Controller::detect('auth'));
+Route::controller(Controller::detect('cms'));
+Route::controller(Controller::detect('elfinder'));
 
 Route::get('(:bundle)', array('before' => 'auth', 'uses' => 'cardea::static@dashboard'));
 // Route::get('(:bundle)', array('uses' => 'cardea::login@index'));

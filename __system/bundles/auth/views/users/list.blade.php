@@ -1,10 +1,10 @@
-@layout('admin.layout')
+@layout('cardea::layout')
 @section('title')
 Kullanıcılar
 @endsection
 @section('breadcrumbs')
 @parent
-<li><a href="{{url('admin/users')}}">Kullanıcılar</a></li>
+<li><a href="{{action('auth::users')}}">Kullanıcılar</a></li>
 @endsection
 
 @section('maincontent')
@@ -40,7 +40,7 @@ Kullanıcılar
 					<td>{{$user->city_name()}}</td>
 					<td>{{$user->phone}}</td>
 					<td>{{$user->gender_text()}}</td>
-					<td><a href="{{url('admin/users/detail/'.$user->id)}}"><i class="icon icon-edit"></i></td>
+					<td><a href="{{action('auth::users@detail', array($user->id))}}"><i class="icon icon-edit"></i></td>
 				</tr>
 				@empty
 				<tr><td colspan="9">Kullanıcı Bulunmuyor</td></tr>
